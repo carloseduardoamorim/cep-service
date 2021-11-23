@@ -25,7 +25,10 @@ public abstract class AbstractCepServiceImpl implements CepService {
         return path.endsWith("/") ? path : path + "/";
     }
     
-    protected abstract String buildPath(String cep);
+    protected WebTarget buildPath(String cep){
+        Client client = ClientBuilder.newClient();
+        return client.target(dominio + cep);
+    }
     
     protected String getFullPath(String cep){
         return this.dominio + buildPath(cep);
@@ -37,7 +40,7 @@ public abstract class AbstractCepServiceImpl implements CepService {
                 String.format("Buscando endereço para o CEP %s usando serviço %s", 
                         cep, dominio)
         );
-        return target.path(buildPath(cep)).request().get(Endereco.class);
+        return buildPath(cep).request().get(Endereco.class);
         
     }
     

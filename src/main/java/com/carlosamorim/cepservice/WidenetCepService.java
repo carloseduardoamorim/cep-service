@@ -5,19 +5,21 @@
  */
 package com.carlosamorim.cepservice;
 
-//import javax.enterprise.context.Dependent;
+import javax.enterprise.context.Dependent;
 import javax.ws.rs.client.WebTarget;
 
-//@Dependent
-public class PostmonCepService extends AbstractCepServiceImpl {
+@Dependent
+public class WidenetCepService extends AbstractCepServiceImpl {
 
-    public PostmonCepService() {
-        super("https://api.postmon.com.br");
+    public WidenetCepService() {
+        super("https://apps.widenet.com.br/");
     }
 
     @Override
     protected WebTarget buildPath(String cep) {
-        return super.buildPath(String.format("v1/cep/%s", cep));
+        return super.buildPath(
+                String.format("busca-cep/api/cep.json?code=%s", cep)
+        );
     }
     
 }

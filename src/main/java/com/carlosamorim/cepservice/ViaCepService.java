@@ -1,9 +1,10 @@
 
 package com.carlosamorim.cepservice;
 
-import javax.enterprise.context.Dependent;
+//import javax.enterprise.context.Dependent;
+import javax.ws.rs.client.WebTarget;
 
-@Dependent
+//@Dependent
 public final class ViaCepService extends AbstractCepServiceImpl {
 
     public ViaCepService() {
@@ -11,8 +12,8 @@ public final class ViaCepService extends AbstractCepServiceImpl {
     }
 
     @Override
-    protected String buildPath(String cep) {
-        return String.format("ws/%s/json", cep);
+    protected WebTarget buildPath(String cep) {
+        return super.buildPath(String.format("ws/%s/json", cep));
     }
     
 }
