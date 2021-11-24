@@ -1,16 +1,31 @@
 
 package com.carlosamorim.cepsercice.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  *
  * @author cadua
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Endereco {
+    
+    @JsonAlias({"logradouro", "address"})
     private String logradouro;
+    
     private String complemento;
+    
+    @JsonAlias({"bairro", "district"})
     private String bairro;
+    
+    @JsonAlias({"localidade", "city"})
     private String localidade;
+    
+    @JsonAlias({"uf", "state"})
     private String uf;
+    
+    @JsonAlias({"cep", "code"})
     private String cep;
 
     /**
